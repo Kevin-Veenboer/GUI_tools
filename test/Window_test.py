@@ -1,7 +1,9 @@
 import sys
 
 from PySide6 import QtWidgets, QtGui
+from PySide6.QtCore import Slot
 import time
+from gui_tools.QtElements.QtEzProgressBar import some_module
 
 
 class UserInterface(QtWidgets.QMainWindow):
@@ -33,13 +35,10 @@ class UserInterface(QtWidgets.QMainWindow):
         self.clear_button.clicked.connect(self.textBox.clear)
         self.start_button.clicked.connect(self.working)
 
+    @Slot()
     def working(self):
         self.vbox.addWidget(self.progressBar)
-
-        for val in range(0, 5):
-            self.progressBar.setValue(val)
-            self.textBox.append("Work is done")
-            time.sleep(0.5)
+        some_module().some_func(0, 5)
 
     def external_func(self):
         pass
